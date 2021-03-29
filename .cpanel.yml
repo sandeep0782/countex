@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/bmmxgbmw/repositories/countex/public_html/
+    - /bin/cp * $DEPLOYPATH
+    
