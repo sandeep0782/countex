@@ -1,0 +1,156 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block body %}
+<style>
+    fieldset{
+    color:black;
+    }
+</style>
+<div class="container" style="margin-top:5%;margin-bottom:5%">
+    <div class="row">
+        <div  class="col-md-12">
+                <h2 style="background:#262626;padding:19px;color:white">Update SAMPLING DETAIL</h2>
+<form id="loginForm" action="#" method="post" style="width:100%" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset id="body">
+        <div class="row">
+            
+           
+        <div class="col-md-12">
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Design Name</label>
+                    <input type="text" name="design" placeholder="" id="email" value="{{sam.design_name}}">
+            </div>
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Color Name</label>
+                    <input type="text" name="color" placeholder="" id="email" value="{{sam.color_name}}" >
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Supplier Name</label>
+                    <select class="form-control" name="supplier" id="email">
+                        {% for i in supplier %}
+                        <option value="i.id" {% if i.id == sam.supplier.id %} selected {% endif %}>{{i.name}}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Drop</label>
+                    <select class="form-control" name="drop" id="email">
+                        {% for i in drop %}
+                        <option value="i.id" {% if i.id == drop.id %} selected {% endif %}>{{i.name}}</option>
+                        {% endfor %}
+                    </select>
+                 </div>  
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Product Name</label>
+                    <select class="form-control" name="product" id="email">
+                        {% for i in product %}
+                        <option value="i.id" {% if i.id == sam.product.id %} selected {% endif %}>{{i.name}}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Season Name</label>
+                    <select class="form-control" name="season" id="email">
+                        {% for i in season %}
+                        <option value="i.id" {% if i.id == sam.season.id %} selected {% endif %}>{{i.name}}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Technique</label>
+                    <select class="form-control" name="tech" id="email">
+                        {% for i in tech %}
+                        <option value="i.name" {% if i.id == sam.tech.name %} selected {% endif %}>{{i.name}}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Upload Image</label>
+                    <input type="file" name="image" value="Choose Image" id="email" style="height:35px">
+            </div>
+        </div>
+        <div class="col-md-12">
+             <div class="col-md-6">
+                    <label for="email" style="color:black;">Start Date</label>
+                    <input type="date" name="dos" placeholder="Start Date" id="email" value="{{sam.dos|date:'Y-m-d'}}" style="height:35px">
+                    
+            </div>
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Complete Date</label>
+                    <input type="date" name="doe" placeholder="Delivery Date" id="email" value="{{sam.del_date|date:'Y-m-d'}}" style="height:35px">
+                    
+            </div>
+        </div>
+        </div>
+        <div class="col-md-12">
+            
+        </hr>
+        </div>
+    
+
+    <input type="submit" id="login" value="Add Sampling" style="padding:12px">
+    </fieldset>
+    </form>
+    </div>
+    
+    <div class="container">
+                            <div class="container-fluid">
+                            <h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">Sampling Comment</h1>
+                            </div><hr>
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Courier Name</th>
+                                      <th>AWB No.</th>
+                                      <th>Sent On</th>
+                                      <th>Reply Date</th>
+                                      <th>Status by Buyer</th>
+                                      <th>Buyer Message</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in buy %}
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{i.courier_name}}</td>
+                                  <td>{{i.awb_no}}</td>
+                                  <td>{{i.sent_on}}</td>
+                                  <td>{{i.rep_date}}</td>
+                                  {% if not i.status is None %}
+                                  <td>{{i.status}}</td>
+                                    {% else %}
+                                  <td></td>
+                                    {% endif %}
+                                    {% if not i.buyer_message is None %}
+                                  <td>{{i.buyer_message}}</td>
+                                    {% else %}
+                                  <td></td>
+                                    {% endif %}
+
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+
+</div>
+
+</div>
+
+{% if terror %}
+<script>
+    alert('Add a new Sample successfully');
+    window.location = "{% url 'view_sampling' %}";
+</script>
+{% endif %}
+
+{% endblock %}

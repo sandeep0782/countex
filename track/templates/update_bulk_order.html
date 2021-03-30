@@ -1,0 +1,178 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<style>
+    fieldset{
+    color:black;
+    }
+</style>
+<div class="container" style="margin-top:5%;margin-bottom:5%">
+    <div class="row">
+        <div  class="col-md-12">
+                <h2 style="background:#262626;padding:19px;color:white">UPDATE BULK ORDER</h2>
+<form id="loginForm" action="#" method="post" style="width:100%" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset id="body">
+        <div class="row">
+            <div class="col-md-12">
+                <fieldset>
+                    <label for="email" style="color:black;">Date of Start</label>
+                    <input class="form-control" type="date" name="dos">
+                    <span>{{bulk.dos}}</span>
+                </fieldset>
+          </div>
+            <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Season</label>
+                    <input class="form-control" name="season" value="{{bulk.season.name}}" readonly>
+                </fieldset>
+          </div>
+          <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Drop</label>
+                    <input class="form-control" name="drop" value="{{bulk.drop.name}}" readonly>
+                </fieldset>
+          </div>
+          <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Style</label>
+                    <input type="text" name="style" placeholder="Enter Style" id="email" value="{{bulk.style}}">
+                </fieldset>
+          </div>
+            <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Print Technique</label>
+                    <input type="text" name="tech" placeholder="Print Technique Name" value="{{pro.sample.technique}}" id="email">
+                </fieldset>
+          </div>
+            <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Quantity</label>
+                    <input type="text" name="qunt" id="qt" placeholder="Enter Quantity" style="height:33px" value="{{bulk.qunt}}">
+                </fieldset>
+          </div>
+          <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Width</label>
+                    <input type="text" name="width" placeholder="Enter Rate" style="height:33px" value="{{pro.sample.product.width}}">
+                </fieldset>
+          </div>
+          
+          {% ifequal pro.sample.technique "Solid" %}
+          <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Rate</label>
+                    <input type="text" name="rate" id="ra" placeholder="Enter Rate" onkeyup="calc()" style="height:33px" value="{{pro.sample.product.solid_rate}}">
+                </fieldset>
+          </div>
+          {% endifequal %}
+          
+          {% ifequal pro.sample.technique "Rotary" %}
+          <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Rate</label>
+                    <input type="text" name="rate" id="ra" placeholder="Enter Rate" onkeyup="calc()" style="height:33px" value="{{pro.sample.product.printed_rate}}">
+                </fieldset>
+          </div>
+          {% endifequal %}
+          
+          {% ifequal pro.sample.technique "Digital" %}
+          <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Rate</label>
+                    <input type="text" name="rate" id="ra" placeholder="Enter Rate" onkeyup="calc()" style="height:33px" value="{{pro.sample.product.digital_rate}}">
+                </fieldset>
+          </div>
+          {% endifequal %}
+          
+          {% ifequal pro.sample.technique "Adhoc" %}
+          <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Rate</label>
+                    <input type="text" name="rate" id="ra" placeholder="Enter Rate" onkeyup="calc()" style="height:33px" >
+                </fieldset>
+          </div>
+          {% endifequal %}
+          <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Value</label>
+                    <input type="text" name="value" id="total" style="height:33px" readonly>
+                </fieldset>
+          </div>
+          <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Delivery Date</label>
+                    <input type="date" name="del" id="del" style="height:33px" onkeyup="calc2()">
+                    <span>{{bulk.del_date}}</span>
+                </fieldset>
+          </div>
+          <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">GMT Vendor</label>
+                    <select class="form-group" name="gmt" style="width:100%;padding:6px">
+               {% for i in gmt %}
+               {% if i.user.username == bulk.gmt_vendor %}
+                <option value="{{i.user.username}}" selected>{{i.user.username}}</option>
+                {% else %}
+                <option value="{{i.user.username}}">{{i.user.username}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+
+                </fieldset>
+          </div>
+
+          <div class="col-md-6">
+                <fieldset>
+                    <label for="email" style="color:black;">Buy Plan Month</label>
+                    <select class="form-group" name="mon" style="width:100%;padding:6px" id="bpm" onkeyup="calc2()">
+            
+            <option value="{{bpm_id}}" selected>{{bulk.bpm}}</option>
+                       
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+                
+            </select>
+
+                </fieldset>
+          </div>
+        </div>
+    <input type="submit" id="login" value="Update Bulk Detail" style="padding:12px">
+    </fieldset>
+    </form>
+    </div>
+    
+
+</div>
+
+</div>
+
+{% if terror %}
+<script>
+    alert('Update Bulk Order successfully');
+    window.location = "{% url 'view_bulk_admin' %}";
+</script>
+{% endif %}
+
+<script>
+function calc()
+{
+  var quantity = document.getElementById("qt").value;
+
+     var cost = document.getElementById("ra").value;
+     var totalprice = parseInt(quantity)*parseInt(cost);
+	 document.getElementById("total").value = totalprice;
+    }
+</script>
+
+{% endblock %}

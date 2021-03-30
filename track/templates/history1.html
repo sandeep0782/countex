@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container-fluid" style="width:100%">
+           <div class="container-fluid">
+              <h3 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">History</h3>
+           </div> <hr>                 
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                Start Date : {{sample.dos}}<br/>
+                {% for i in courrier %}
+                
+                {{forloop.counter}} Sample Sent: {{i.sent_on}}<br/>
+                {{forloop.counter}} 1st Sample Approval: {{i.rep_date}}<br/>
+                {{forloop.counter}} courier details: {{i.awb_no}}<br/>
+                
+                {% endfor %}
+                
+                Final Approval Date: {{sample.dos}}<br/>
+            </div>
+            <div class="col-6"></div>
+        </div>
+    </div>                            
+</div>
+
+{% endblock %}

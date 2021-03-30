@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container-fluid" style="width:100%">
+                            <div class="container-fluid">
+                                <div class="container-fluid">
+                                <h3 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">
+                                    
+                                            View Sampling History
+                                    
+                                    </div>
+                                     </h3><br/>
+                            </div><hr>
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Product</th>
+                                      <th>Supplier</th>
+                                    
+                                      <th>Action</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                              
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{i.buyer.user.username}}</td>
+                                  <td>{{i.season.name}}</td>
+                                  <td>{{i.drop.name}}</td>
+                                  <td>{{i.design_name}}</td>
+                                  <td>{{i.color_name}}</td>
+                                  <td>{{i.product.name}}</td>
+                                  <td>{{i.supplier.user.username}}</td>
+                                  <td align="center" style="width:150px">
+                                  <a href="{% url 'history1' i.id %}"><button class="btn btn-success"><i class="fa fa-eye"></i> </button></a></td>
+                              </tr>
+                              
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+
+{% endblock %}

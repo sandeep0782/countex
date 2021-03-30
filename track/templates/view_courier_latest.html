@@ -1,0 +1,94 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container-fluid" style="margin-top:2%;width:90%">
+                                <div class="container" style="width:50%">
+                                        
+                                        
+                                            
+                                            <form action="" method="post" align="center">
+                                                
+                                                {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-md-8" align="right">
+                                                <input class="form-control" type="date" name="date" style="width:55%"></div>
+                                                <div class="col-md-4" align="left">
+                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                            </form><br/>
+                                            
+                                        
+                                        
+                                        <h2 align="center" style="color:red;font-weight:bold">
+                                            View updated Sampling
+                                        </h2>  <hr>
+                                            
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                <div class="row">
+                                                <div class="col-md-5" align="right">
+                                                <select class="form-control" name="name" style="width:75%">
+                                                    {% for i in sup %}
+                                                    <option value="{{i.user.username}}">{{i.user.username}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                </div>
+                                                
+                                                <div class="col-md-5" align="left">
+                                                <input type="date" class="form-control" name="dat1">
+                                                </div>
+                                                <div class="col-md-2" align="left">
+                                                <button type="submit" class="btn btn-primary"><i class="fa fa-enevelope"></i>Send Email</button>
+                                                </div>
+                                                </div>
+                                            </form>
+                                            
+                                        </div>
+                                        
+                                            <br/>
+                                     <h4 align="center" style="color:red;font-weight:bold"><span style="color:black">(</span>Searched Date : "{{data.dat}}"<span style="color:black">)</span></h4>
+                                    </div><hr>
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Product</th>
+                                      <th>Supplier</th>
+                                      <th>Awb No</th>
+                                      <th>Comment</th>
+                                      <th>Action</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                              
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{i.sample.buyer.user.username}}</td>
+                                  <td>{{i.sample.season.name}}</td>
+                                  <td>{{i.sample.drop.name}}</td>
+                                  <td>{{i.sample.design_name}}</td>
+                                  <td>{{i.sample.color_name}}</td>
+                                  <td>{{i.sample.product.name}}</td>
+                                  <td>{{i.sample.supplier.user.username}}</td>
+                                  <td>{{i.sample.awb_no}}</td>
+                                  <td align="center" style="width:150px">
+                                  <a href="{% url 'view_comment_admin' i.sample.id %}"><button class="btn btn-success"><i class="fa fa-comment"></i> </button></a></td>
+                                  <td style="width:150px">
+                                  <a href="{% url 'delete_sampling' i.sample.id %}" ><button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button></a></td>
+                              </tr>
+                              
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'index.html' %}
+{% block body %}
+<style>
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+#messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 2%;
+}
+
+</style>
+
+<div class="container-fluid scrollmenu" style="width:100%;bottom-margin:5%">
+                            <div class="container-fluid">
+                                {% for message in messages %}
+					                <p id="messages">{{message}}</p>
+				                {% endfor %}		
+                            <h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">Under Production Order({{sea.name|default:"All"}}, {{buy.user.name|default:"All"}})</h1>
+                            </div><hr>
+                            
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>ID</th>
+                                      <th>Date</th>
+                                     
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Design</th>
+                                      <th>Color</th>
+                                      <th>Quality</th>
+                                      <th>Width</th>
+                                      <th>Supplier</th>
+                                      <th>Style</th>
+                                      <th>Technique</th>
+                                      <th>Quantity</th>
+                                      
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                              <tr>
+                                  <td>{{i.id}}</td>
+                                
+                                  <td>{{i.dos}}</td>
+                                  <td>{{i.sample.buyer.user.username}}</td>
+                                  <td>{{i.season.name}}</td>
+                                  <td>{{i.drop.name}}</td>
+                                  <td>{{i.sample.design_name}}</td>
+                                  <td>{{i.sample.color_name}}</td>
+                                  <td>{{i.sample.product.name}}</td>
+                                  <td>{{i.width}}</td>
+                                  <td>{{i.sample.supplier.user.username}}</td>
+                                  {% if not i.style is None %}
+                                  <td>{{i.style}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.print_tech is None %}
+                                  <td>{{i.print_tech}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+                            
+
+                                  
+                                  <td>{{i.qunt}}</td>
+                                  
+                                  
+
+                                 
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                     
+                  </div>
+
+{% endblock %}

@@ -1,0 +1,197 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+#messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 2%;
+}
+
+
+</style>
+
+<div class="container-fluid scrollmenu" style="width:100%">
+                            <div class="container-fluid">
+                                {% for message in messages %}
+					                <p id="messages">{{message}}</p>
+				                {% endfor %}
+				                <center><form action="" method="post" style="margin-top:2%">
+                                {% csrf_token %}
+                                <label>From Date</label>
+                                <input type="date" name="sdate">
+                                <label>To Date</label>
+                                <input type="date" name="edate">
+                            
+                                <button type="submit"> search</button>
+                            </form></center>
+				                
+				                
+<h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:1%">Latest Bulk Dispatch</h1>
+                            </div><hr>
+                            <center><form action="" method="post" style="margin-top:1%">
+                                {% csrf_token %}
+                            
+                                <label>Date</label>
+                                <input type="date" name="date1">
+                            
+                                <button type="submit"> Send Mail</button>
+                            </form></center>
+                            
+                                <table id="example" class="display">
+                                  <thead>
+                                    <tr>
+                                      <th>Order NO</th>
+                                      <th>Image</th>
+                                      <th>Date</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Product</th>
+                                      <th>Width</th>
+                                      <th>Supplier</th>
+                                      <th>Style</th>
+                                      <th>Print_Tech</th>
+                                      <th>Quantity</th>
+                                      <th>Rate</th>
+                                      <th>Value</th>
+                                       <th> BPM </th>
+                                       <th> BPM Status </th>
+                                      <th>Delivery</th>
+                                      <th>GMT Vendor</th>
+                                      <th>Current Status</th>
+                                      <th>Time Status</th>
+                                      <th>Action</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in gre %}
+                              <tr>
+                                  <td>{{i.bulk.id}}</td>
+                                  <td>{%if i.bulk.sample.image %}
+                                  <img src="{{i.bulk.sample.image.url}}" style="width:80px;height:80px">
+                                  {% else %}
+                                  {% endif %}</td>
+                                  <td>{{i.bulk.dos}}</td>
+                                  <td>{{i.bulk.sample.buyer.user.username}}</td>
+                                  <td>{{i.bulk.season.name}}</td>
+                                  <td>{{i.bulk.drop.name}}</td>
+                                  <td>{{i.bulk.sample.design_name}}</td>
+                                  <td>{{i.bulk.sample.color_name}}</td>
+                                  <td>{{i.bulk.sample.product.name}}</td>
+                                  <td>{{i.bulk.width}}</td>
+                                  <td>{{i.bulk.sample.supplier.user.username}}</td>
+                                  {% if not i.bulk.style is None %}
+                                  <td>{{i.bulk.style}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.bulk.print_tech is None %}
+                                  <td>{{i.bulk.print_tech}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.bulk.qunt is None %}
+                                  <td>{{i.bulk.qunt}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.bulk.rate is None %}
+                                  <td>{{i.bulk.rate}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.bulk.value is None %}
+                                  <td>{{i.bulk.value}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+                                
+                                
+                                {% if not i.bulk.bpm is None %}
+                                  <td>{{i.bulk.bpm}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+                                  
+                                  {% if not i.bulk.bpmstatus is None %}
+                                  <td>{{i.bulk.bpmstatus}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+                                  
+                                  
+                                  {% if not i.bulk.del_date is None %}
+                                  <td>{{i.bulk.del_date}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.bulk.gmt_vendor is None %}
+                                  <td>{{i.bulk.gmt_vendor}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.bulk.c_status is None %}
+                                  <td>{{i.bulk.c_status}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.bulk.time_status is None %}
+                                  <td>{{i.bulk.time_status}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  <td align="center" style="width:100px">
+                                  <a href="{% url 'admin_bulk_status' i.bulk.id %}">
+                                      <button class="btn btn-primary">
+                                          <i class="fa fa-eye"></i> </button></a>
+
+                                  <a href="{% url 'copy_of_bulk' i.bulk.id %}">
+                                      <button class="btn btn-success">
+                                          <i class="fa fa-files-o"></i> </button></a>
+                                
+                                  
+                                  {% if error != "pat4" %}
+                                  <a href="{% url 'update_bulk_order' i.bulk.id %}" >
+                                      <button class="btn btn-success">
+                                          <i class="fa fa-edit"></i></button></a>
+                                      
+                                      
+                                      <a href="{% url 'delete_bulk' i.bulk.id %}" ><button class="btn btn-danger" onclick="return confirm('Are you sure?')">
+                                          <i class="fa fa-trash-o"></i></button></a>
+                                          
+                                          
+                                          
+                                          {% endif %}</td>
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                      
+                  </div>
+
+{% endblock %}

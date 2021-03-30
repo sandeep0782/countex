@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container" style="margin-top:5%;margin-bottom:5%">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="{% static 'images/buyer.jpg' %}" style="width:100%;height:550px">
+        </div>
+        <div  class="col-md-7">
+                <h2 style="background:#262626;padding:19px;color:white">ADD Admin</h2>
+<form id="loginForm" action="#" method="post" style="width:100%" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset id="body">
+        <div class="row">
+            <div class="col-md-6">
+                <fieldset>
+                    <label for="email">Username</label>
+                    <input type="text" name="name" placeholder="Enter Username" id="email" required="">
+                </fieldset>
+            </div>
+            <div class="col-md-6">
+                <fieldset>
+                    <label for="email">Password</label>
+                    <input type="password" name="pwd" placeholder="Enter Password" id="email" required="">
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <fieldset>
+                    <label for="email">First Name</label>
+                    <input type="text" name="fname" placeholder="Enter First Name" id="email" required="">
+                </fieldset>
+            </div>
+            <div class="col-md-6">
+                <fieldset>
+                    <label for="email">Last Name</label>
+                    <input type="text" name="lname" placeholder="Enter Last Name" id="email" required="">
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <fieldset>
+                    <label for="email">Email Address</label>
+                    <input type="email" name="email" placeholder="Enter Email Address" id="email" required="">
+                </fieldset>
+            </div>
+            <div class="col-md-6">
+                <fieldset>
+                    <label for="email">Mobile Number</label>
+                    <input type="text" name="contact" placeholder="Enter Mobile number" id="email" required="">
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                   <fieldset>
+                    <label for="email">Address</label>
+                    <input type="text" name="address" placeholder="Enter Address" id="email" required="">
+                   </fieldset>
+              </div>
+
+        </div>
+
+
+        <input type="submit" id="login" value="Register Admin" style="padding:12px">
+    </fieldset>
+</form>
+</div>
+
+    </div>
+
+</div>
+
+{% if terror %}
+<script>
+    alert('Add a new admin successfully');
+    window.location = "{% url 'view_rm' %}";
+</script>
+{% endif %}
+
+{% endblock %}

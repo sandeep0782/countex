@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<style>
+    fieldset{
+    color:black;
+    }
+</style>
+<div class="container" style="margin-top:5%;margin-bottom:5%">
+    <div class="row">
+        <div  class="col-md-12">
+                <h2 style="background:#262626;padding:19px;color:white">ADD SAMPLING COMMENT</h2>
+<form id="loginForm" action="#" method="post" style="width:100%" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset id="body">
+        <div class="row">
+          <div class="col-md-12">
+        <fieldset>
+            <label for="password">Select Your Status</label>
+            <select class="form-group" name="stat" style="width:100%;padding:6px" required="">
+                <option value="">-----select user type-----</option>
+                <option value="Approved">Approved</option>
+                <option value="Approved with Comment">Approved with Comment</option>
+                <option value="Resubmit">Resubmit</option>
+                <option value="Drop">Drop</option>
+            </select>
+            </fieldset>
+             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <fieldset>
+                    <label for="email" style="color:black;">Description</label>
+                    <textarea name="message" placeholder="Write Your Comment" id="email" required="" style="width:100%"></textarea>
+                </fieldset>
+          </div>
+        </div>
+
+    <input type="submit" id="login" value="Add Comment" style="padding:12px">
+    </fieldset>
+    </form>
+    </div>
+
+</div>
+
+</div>
+
+{% ifequal perror "create" %}
+<script>
+    alert('You have given Approval of sample,then Bulk Order has created successfully');
+    window.location = "{% url 'pend_app_buyer'  %}";
+</script>
+{% endifequal %}
+{% ifequal perror "notcreate" %}
+<script>
+    alert('Sampling Order has closed by admin.Now,courier detail will not Updated by Supplier.');
+    window.location = "{% url 'pend_app_buyer'  %}";
+</script>
+{% endifequal %}
+
+
+{% if terror %}
+<script>
+    alert('Sent Message successfully');
+    window.location = "{% url 'pend_app_buyer'  %}";
+</script>
+{% endif %}
+
+{% endblock %}

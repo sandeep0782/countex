@@ -1,0 +1,495 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="en">
+<head>
+<title>Smart Tracking System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content= />
+<script type="application/x-javascript"async> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+
+<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />  
+<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet"> 			<!-- font-awesome icons -->
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic & display=swap' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700 &display=swap' rel='stylesheet' type='text/css'>
+<!-- //fonts -->
+
+<style>
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10;
+  
+}
+</style>
+
+</head>
+<body>
+	<div class="header-top">
+		<!-- container -->
+		<div class="container">
+			<div class="social w3-agileitsicons"> 
+				<ul>
+					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a class="twt" href="#"><i class="fa fa-twitter" aria-hidden="true"></i> </a></li>
+					<li><a class="drbl" href="#"><i class="fa fa-linkedin" aria-hidden="true"></i> </a></li>
+					<li><a class="be" href="#"><i class="fa fa-dribbble" aria-hidden="true"></i> </a></li>
+				</ul>  
+			</div>
+			<div class="w3layouts-details">
+				<ul>
+					<li><a href="mailto:@example.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>sandeep0782@gmail.com</a></li>
+					<li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>(+91) 9712321278</li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<!-- //container -->
+	</div>
+	<!-- //header-top -->
+	<!-- header -->
+	<div class="header">
+		<!-- container -->
+		<div class="container">
+			<div class="header-bottom">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="w3ls-logo">
+							<h1><a href="admin_home">Smart Tracking<span> System</span></a></h1>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div align="right">
+							{% if request.user.is_authenticated %}
+							<h4 style="margin-top:6%;color:Red"><i style="padding:5px;border:1px solid gray;border-radius:50%" class="fa fa-user"></i> Hello,{{request.user.username}}</h4>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+
+				<div class="clearfix"> </div>
+			</div>
+			<div class="top-nav" >
+				<nav class="navbar navbar-default">
+					<div class="container">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu						
+						</button>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							{% if "pat5" in error or "pat4" in error %}
+							<li class="home-icon">
+								<a href="{% url 'admin_home' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+								<li><a href="{% url 'admin_home' %}" class="active"><i class="fa fa-home"></i> Dashboard </a></li>
+								<!--<li><a href="{% url 'admin_home' %}"><i class="fa fa-eye"></i> Request Sample</a></li>-->
+
+
+							<li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="fa fa-users"></i> Administrator <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false">Buyer<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a tabindex="-1" href="{% url 'add_buyer' %}">Add buyer</a></li>
+											<li><a href="{% url 'view_buyer' %}">View Buyer</a></li>
+										</ul>
+									</li>
+
+									<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false">Supplier<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a tabindex="-1" href="{% url 'add_supplier' %}">Add Supplier</a></li>
+											<li><a href="{% url 'view_supplier' %}">View Supplier</a></li>
+										</ul>
+									</li>
+
+									<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a tabindex="-1" href="{% url 'add_rm' %}">Add Admin</a></li>
+											<li><a href="{% url 'view_rm' %}">View Admin</a></li>
+										</ul>
+									</li>
+
+									<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false">Vendor<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a tabindex="-1" href="{% url 'signup' %}">Add Vendor</a></li>
+											<li><a href="{% url 'view_vendor' %}">View Vendor</a></li>
+										</ul>
+									</li>
+
+									<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false">Season<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a tabindex="-1" href="{% url 'add_season' %}">Add Season</a></li>
+											<li><a href="{% url 'view_season' %}">View Season</a></li>
+										</ul>
+									</li>
+
+									<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false">Drop<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a tabindex="-1" href="{% url 'add_drop' %}">Add Drop</a></li>
+											<li><a href="{% url 'view_drop' %}">View Drop</a></li>
+										</ul>
+									</li>
+
+									<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false">Item<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a tabindex="-1" href="{% url 'add_item' %}">Add Item</a></li>
+											<li><a href="{% url 'view_item' %}">View Item</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+
+
+							<li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="fa fa-folder"></i> Transaction <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false">Sampling<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a tabindex="-1" href="{% url 'add_sampling' %}">Add Sampling</a></li>
+											<!--<li><a href="{% url 'view_sampling' %}">View Sampling</a></li>-->
+											<li><a href="{% url 'all_sampling' %}">View Sampling</a></li>
+											<li><a href="{% url 'view_sampling' %}">Edit Sampling</a></li>
+										</ul>
+									</li>
+
+									<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false">Production<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a tabindex="-1" href="{% url 'view_pending_bulk' %}">Pending Order</a></li>
+											<li><a href="{% url 'view_bulk_admin' %}">Accepted Order</a></li>
+											<li><a href="{% url 'Create_Order_Manually' %}">Create_Order_Manually</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+
+							<li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="fa fa-file"></i> Report<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+								    
+
+
+									<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false">Sampling<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+										    <li><a tabindex="-1" href="{% url 'pendelad' %}">All Pending Del Date</a></li>
+										    <li><a tabindex="-1" href="{% url 'sampling_status' %}">Sampling Status</a></li>
+											<li><a tabindex="-1" href="{% url 'view_courier_latest' %}">Daily Dispatch Details</a></li>
+											<li><a tabindex="-1" href="{% url 'view_courier_update' %}">Daily Approval Details</a></li>
+											<li><a tabindex="-1" href="{% url 'view_sampling_underapproval' %}">All Pending Approval</a></li>
+											<!--<li><a href="{% url 'view_sampling_before' %}">Before Time</a></li>-->
+											<li><a href="{% url 'view_sampling_uncomplete' %}">1st Submit Approved-Rotary</a></li>
+											<li><a href="{% url 'view_sampling_ontime' %}">On Time Details</a></li>
+											<li><a href="{% url 'sampling_accuracy' %}">Sampling Accuracy</a></li>
+										
+										</ul>
+									</li>
+									<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false"> Production <span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<!--<li><a tabindex="-1" href="{% url 'bulk_start_report' %}">Bulk Before Time</a></li>-->
+											<li><a tabindex="-1" href="{% url 'latest_greige' %}">Greige Issue Detail</a></li>
+											<li><a tabindex="-1" href="{% url 'latest_print' %}">Printing Detail</a></li>
+											<li><a tabindex="-1" href="{% url 'latest_checking' %}">Checking Detail</a></li>
+											<li><a tabindex="-1" href="{% url 'latest_dispatch' %}">Dispatch Detail</a></li>
+											<li><a tabindex="-1" href="{% url 'bulk_start_report' %}">On-Time Details</a></li>
+											<li><a tabindex="-1" href="{% url 'bulk_start_report' %}">Delayed Details</a></li>
+											
+											<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false"> Order Vs Dispatch <span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<!--<li><a tabindex="-1" href="{% url 'bulk_start_report' %}">Bulk Before Time</a></li>-->
+											<li><a tabindex="-1" href="{% url 'supplier_summary' %}">Supplier-wise</a></li>
+											<li><a tabindex="-1" href="{% url 'buyer_summary' %}">Buyer-wise</a></li>
+											
+										</ul>
+									</li>
+										<li class="dropdown-submenu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false"> Pending Production <span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											
+											<li><a tabindex="-1" href="{% url 'pending_greige' %}">Greige Detail</a></li>
+											<li><a tabindex="-1" href="{% url 'pending_print' %}">Printing Detail</a></li>
+											<li><a tabindex="-1" href="{% url 'pending_checking' %}">Checking Detail</a></li>
+											<li><a tabindex="-1" href="{% url 'pending_dispatch' %}">Dispatch Detail</a></li>
+											
+										</ul>
+									</li>
+											
+										</ul>
+									</li>
+								<li class="dropdown-submenu">
+										<a href="{% url 'custom_report' %}" class="dropdown-toggle" data-toggle="dropdown-submenu" role="button" aria-haspopup="true" aria-expanded="false">Custom Report<span class=""></span></a>
+										<ul class="dropdown-menu">
+										</ul>
+									</li>
+								</ul>
+							</li>
+							
+								<li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="fa fa-file"></i> History<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+
+
+									<li class="dropdown-submenu">
+										<a href="{% url 'sampling_history' %}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Sampling<span class="caret"></span></a>
+									</li>
+									<li class="dropdown-submenu">
+										<a href="{% url 'sampling_history' %}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> Bulk <span class="caret"></span></a>
+		
+									</li>
+								</ul>
+							</li>
+
+
+									<a href="{% url 'logout' %}" style="margin-left:10%;color:white"><span style="background:red;padding:9px">
+										<i class="fa fa-sign-out"></i>Logout</span></a>
+									
+
+
+							{% else %}
+							{% if request.user.is_authenticated %}
+							{% ifequal error "pat" %}
+							<li class="home-icon"><a href="{% url 'user_home' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+							<li><a href="{% url 'user_home' %}" class="active"><i class="fa fa-home"></i> Home</a></li>
+							<li><a href="{% url 'add_sampling_buyer' %}" ><i class="fa fa-plus"></i> Add Sampling</a></li>
+							<li><a href="{% url 'sample_buyer' %}" ><i class="fa fa-eye"></i> Sampling</a></li>
+							<li><a href="{% url 'buyer_bulk_order' %}" ><i class="fa fa-folder"></i> Bulk Order</a></li>
+							
+							<li><a href="{% url 'pend_app_buyer' %}" ><i class="fa fa-folder"></i> Pending Approval</a></li>
+                            
+
+							<li class="login1 w3" style="margin-left:90%">
+								<div id="loginContainer">
+
+									<a href="#" id="loginButton"><span style="background:red;padding:9px">
+										<i class="fa fa-user"></i> Welcome,{{request.user.username}}</span></a>
+									<div id="loginBox">
+										<div id="loginForm">
+											<fieldset id="body">
+												<a href="{% url 'admin_login' %}"><button id="login" style="margin-bottom:2%;width:80%;font-size:14px">Profile</button></a><br>
+													<a href="{% url 'login' %}"><button id="login" style="margin-bottom:2%;width:80%">Setting</button></a>
+													<a href="{% url 'logout' %}"><button id="login" style="margin-bottom:2%;width:80%">Logout</button></a>
+											</fieldset>
+
+										</div>
+									</div>
+								</div>
+							</li>
+
+							{% else %}
+							{% if "pat2" in error %}
+
+							<li class="home-icon"><a href="{% url 'admin_home' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+							<li><a href="{% url 'admin_home' %}" class="active"><i class="fa fa-home"></i> Home</a></li>
+
+
+                            <li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="fa fa-folder"></i> Sampling <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="{% url 'Running_Sampling_Supplier' %}"  aria-haspopup="true" aria-expanded="false">Running Development</a>
+									</li>
+
+									<li>
+										<a href="{% url 'sample_supplier' %}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">All Development</a>
+                                    </li>
+								</ul>
+							</li>
+							<li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="fa fa-folder"></i> Bulk Order <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href= "{% url 'running_supplier_bulk_order' %}" aria-haspopup="true" aria-expanded="false">Running Order</a>
+									</li>
+									<li>
+										<a href="{% url 'supplier_bulk_order' %}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">All Bulk Order</a>
+                                    </li>
+								</ul>
+							</li>
+							<li><a href="{% url 'pendel' %}" ><i class="fa fa-folder"></i> Set Delivery Date</a></li>
+
+                    
+							
+							
+							<li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="fa fa-folder"></i> Report <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="#"  aria-haspopup="true" aria-expanded="false">Daily Dispatch</a>
+									</li>
+
+									{% if request.user.authetication_service_set.all.0.daily_approval_sampling %}<li>
+										<a href="{% url 'view_courier_update' %}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Daily Approval</a>
+                                    </li>{% endif %}
+								</ul>
+							</li>
+
+
+							<li class="login1 w3" style="margin-left:90%">
+								<div id="loginContainer">
+
+									<a href="#" id="loginButton"><span style="background:red;padding:9px">
+										<i class="fa fa-user"></i> Welcome,{{request.user.username}}</span></a>
+									<div id="loginBox">
+										<div id="loginForm">
+											<fieldset id="body">
+												<a href="{% url 'admin_login' %}"><button id="login" style="margin-bottom:2%;width:80%;font-size:14px">Profile</button></a><br>
+													<a href="{% url 'login' %}"><button id="login" style="margin-bottom:2%;width:80%">Setting</button></a>
+													<a href="{% url 'logout' %}"><button id="login" style="margin-bottom:2%;width:80%">Logout</button></a>
+											</fieldset>
+
+										</div>
+									</div>
+								</div>
+							</li>
+
+							{% else %}
+							<li class="home-icon"><a href="{% url 'gmt_home' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+							<li><a href="{% url 'gmt_home' %}" class="active"><i class="fa fa-home"></i> Home</a></li>
+							<li><a href="{% url 'current_gmt_bulk_order' %}" ><i class="fa fa-folder"></i> Running Order</a></li>
+							<li><a href="{% url 'gmt_bulk_order' %}" ><i class="fa fa-folder"></i> Delivered Order</a></li>
+
+
+							<li class="login1 w3" style="margin-left:90%">
+								<div id="loginContainer">
+
+									<a href="#" id="loginButton"><span style="background:red;padding:9px">
+										<i class="fa fa-user"></i> Welcome,{{request.user.username}}</span></a>
+									<div id="loginBox">
+										<div id="loginForm">
+											<fieldset id="body">
+												<a href="{% url 'admin_login' %}"><button id="login" style="margin-bottom:2%;width:80%;font-size:14px">Profile</button></a><br>
+													<a href="{% url 'login' %}"><button id="login" style="margin-bottom:2%;width:80%">Setting</button></a>
+													<a href="{% url 'logout' %}"><button id="login" style="margin-bottom:2%;width:80%">Logout</button></a>
+											</fieldset>
+
+										</div>
+									</div>
+								</div>
+							</li>
+							{% endif %}
+							{% endifequal %}
+							{% else %}
+							<li class="home-icon">
+								<a href="{% url 'home' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+							<li><a href="{% url 'home' %}" class="active"><i class="fa fa-home"></i> Home</a></li>
+							<li><a href="{% url 'about' %}"><i class="fa fa-briefcase"></i> About</a></li>
+
+							<li><a href="{% url 'contact' %}"><i class="fa fa-phone"></i> Contact</a></li>
+
+							<li class="login w3">
+								<div id="loginContainer">
+
+									<a href="{% url 'login' %}"><span style="background:red;padding:9px">
+										<i class="fa fa-sign-in"></i> Login</span></a>
+
+								</div>
+							</li>
+							{% endif %}
+							{% endif %}
+						</ul>	
+						<div class="clearfix"> </div>
+					</div>	
+				</nav>	
+			</div>
+		</div>
+		<!-- //container -->
+	</div>
+	{% block body %}
+	{% endblock %}
+
+	<div class="footer" style="padding:0;margin-top:10%;background-color:#10c7bf;">
+		<div class="container">
+			<div class="footer-agileinfo">
+				<div class="col-md-12 footer-left">
+					<div class="w3-agileitsicons">
+						<!--<ul>
+							<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+							<li><a class="twt" href="#"><i class="fa fa-twitter" aria-hidden="true"></i> </a></li>
+							<li><a class="drbl" href="#"><i class="fa fa-linkedin" aria-hidden="true"></i> </a></li>
+							<li><a class="be" href="#"><i class="fa fa-dribbble" aria-hidden="true"></i> </a></li>
+						</ul> 
+					</div>
+					<div class="f-address">
+						<p class="text">Indrapuri Sector-C ,Raisen Road,Bhopal 460222</p>
+						<p class="number">+1 234 567 8901</p>
+					</div> -->
+					<div class="copyright">
+						<p>© 2020 Smart Tracking System .  All rights reserved | Design by <a href="">Sandeep Jangra</a></p>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div> 
+	</div>
+	<!-- //footer -->
+	<!-- smooth-scrolling-of-move-up --> 
+	<script  type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+	<script  type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+	<script  type="text/javascript">
+		$(document).ready(function() {
+			/*
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+			};
+			*/
+			
+			$().UItoTop({ easingType: 'easeOutQuart' });
+			
+		});
+	</script> 
+<!-- js -->
+<script  src="{% static 'js/jquery-1.11.1.min.js' %}"> </script>	
+<script  src="{% static 'js/bootstrap.js' %}"></script>
+<script  type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>	 
+<script  src="{% static 'js/menu_jquery.js' %}"></script>
+
+
+<link rel='stylesheet' type='text/css' href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<link rel='stylesheet' type='text/css' href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+
+
+<script  src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script  src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script  src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+<script> 
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+</script>
+
+    </body>
+</html>

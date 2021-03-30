@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+                            <div class="container-fluid">
+                            <h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">Sampling Comment</h1>
+                            </div><hr>
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Courier Name</th>
+                                      <th>AWB No.</th>
+                                      <th>Sent On</th>
+                                      <th>Comment Date</th>
+                                      <th>Status</th>
+                                      <th>Message</th>
+                                        {% ifequal error "pat" %}
+                                      <th>Comment</th>
+                                        {% endifequal %}
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{i.courier_name}}</td>
+                                  <td>{{i.awb_no}}</td>
+                                  <td>{{i.sent_on}}</td>
+                                  <td>{{i.rep_date}}</td>
+                                  {% if not i.status is None %}
+                                  <td>{{i.status}}</td>
+                                    {% else %}
+                                  <td></td>
+                                    {% endif %}
+                                    {% if not i.buyer_message is None %}
+                                  <td>{{i.buyer_message}}</td>
+                                    {% else %}
+                                  <td></td>
+                                    {% endif %}
+                                  {% ifequal error "pat" %}
+                                    {% if not i.buyer_message is None %}
+                                    <td align="center" style="color:red;font-weight:bold">Close</td>
+                                    {% else %}
+                                  <td align="center" style="width:150px">
+                                  <a href="{% url 'sent_update' i.id %}"><button class="btn btn-success"><i class="fa fa-comment"></i> </button></a></td>
+                                    {% endif %}
+                                    {% endifequal %}
+
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+
+{% endblock %}

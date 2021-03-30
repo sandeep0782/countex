@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<style>
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+</style>
+
+<div class="container-fluid scrollmenu" style="width:100%">
+                            <div class="container-fluid">
+<h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">View Sampling</h1>
+                                            
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                <div class="row">
+                                                <div class="col-md-6" align="left">
+                                                <select class="form-control" name="name" style="width:75%">
+                                                    {% for i in sup %}
+                                                    <option value="{{i.user.username}}">{{i.user.username}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                </div>
+                                                <div class="col-md-6" align="left">
+                                                <button type="submit" class="btn btn-primary"><i class="fa fa-enevelope"></i>Send Email</button>
+                                                </div></div>
+                                            </form>
+                                            
+                            </div><hr>
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Date</th>
+                                      <th>Image</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Quality</th>
+                                      <th>Technique</th>
+                                      <th>Supplier</th>
+                                      <th>Delivery Date</th>
+                                      <th>Current Status</th>
+                                      <th>AWB no</th>
+                                      <th>Courier Name</th>
+                                      <th>Sent On</th>
+                                      <th>Time Status</th>
+                                      <th>Comment</th>
+                                      <th>Action</th>
+                                      
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                                <tr>
+                                  <td>{{i.id}}</td>
+                                  <td>{{i.dos}}</td>
+                                  <td>{%if i.image %}
+                                  <img src="{{i.image.url}}" style="width:80px;height:80px">
+                                  {% else %}
+                                  {% endif %}</td>
+                                  <td>{{i.buyer.user.username}}</td>
+                                  <td>{{i.season.name}}</td>
+                                  <td>{{i.drop.name}}</td>
+                                  <td>{{i.design_name}}</td>
+                                  <td>{{i.color_name}}</td>
+                                  <td>{{i.product.name}}</td>
+                                  <td>{{i.technique}}</td>
+                                  <td>{{i.supplier.user.username}}</td>
+                                  <td>{{i.del_date}}</td>
+                                  <td>{{i.c_status}}</td>
+                                  <td>{{i.awb_no}}</td>
+                                  <td>{{i.courier_name}}</td>
+                                  
+                                  <td>{{i.sent_on}}</td>
+                                  <td>{{i.time_status2}}</td>
+                                  <td align="center" style="width:10px">
+                                  <a href="{% url 'view_comment_admin' i.id %}"><button class="btn btn-success"><i class="fa fa-comment"></i> </button></a></td>
+                                  <td style="width:10px">
+                                  <a href="{% url 'delete_sampling' i.id %}" ><button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button></a></td>
+                                  
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+
+{% endblock %}

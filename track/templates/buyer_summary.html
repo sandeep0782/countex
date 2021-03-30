@@ -1,0 +1,91 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+#messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 2%;
+}
+
+
+</style>
+
+<div class="container-fluid scrollmenu" style="width:100%">
+                            <div class="container-fluid">
+                                {% for message in messages %}
+					                <p id="messages">{{message}}</p>
+				                {% endfor %}
+<h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">Latest Bulk Checking</h1>
+                            </div><hr>
+                            <div class="container">
+                                <form action="" method="post" style="margin-bottom:2%">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <select class="form-control" style="margin-bottom:2%" name="sea" >
+                                            {% for i in sea %}
+                                                <option value="{{i.name}}">{{i.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <select class="form-control" style="margin-bottom:2%" name="mon">
+                                            {% for i in month_li %}
+                                                <option value="{{i}}">{{i}}</option>
+                                            {% endfor %}
+                                        </select>
+                                
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit"> search</button>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                            {% if sup1 %}
+                                <table id="example" class="display">
+                                  <thead>
+                                    <tr>
+                                      <th>Buyer</th>
+                                      <th>Sampling</th>
+                                      <th>Bulk</th>
+                                      <th>Quantity</th>
+                                      <th>Total Dispatch</th>
+                                      <th>Dispatch Qty</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  {% for i in sup2 %}
+                              <tr>
+                                  <td>{{i.buyer}}</td>
+                                  <td>{{i.t_sample}}</td>
+                                  <td>{{i.t_bulk}}</td>
+                                  <td>{{i.t_qty}}</td>
+                                  <td>{{i.t_dispatch}}</td>
+                                  <td>{{i.t_dispatch_qty}}</td>
+                                 
+                              </tr>
+                              {% endfor %}
+                        
+                          </tbody>
+                      </table>
+                      {% endif %}
+                      
+                  </div>
+
+{% endblock %}

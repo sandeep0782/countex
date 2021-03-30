@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+<div class="container" style="width:90%;border:1px solid red;padding:20px">
+    {% ifequal task "pending_app" %}
+        <h4> Hi Team {{name}}, Please note following list of items for which comments has been Released. Please go through the list and do the needful where ever it is required.</h4><hr>
+        <h5>Total Comments Released on {{date}}  = <span style="color:red"></span></h5><hr>
+        <div class="container-fluid" style="width:100%">
+         <table border="1" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Product</th>
+                                      <th>Supplier</th>
+                                      <th>Comment Date</th>
+                                      <th>Status</th>
+                                      <th>Comments</th>
+                                    
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                              {% ifequal i.sample.supplier.user.username name %}
+                              
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{i.sample.buyer.user.username}}</td>
+                                  <td>{{i.sample.season.name}}</td>
+                                  <td>{{i.sample.drop.name}}</td>
+                                  <td>{{i.sample.design_name}}</td>
+                                  <td>{{i.sample.color_name}}</td>
+                                  <td>{{i.sample.product.name}}</td>
+                                  <td>{{i.sample.supplier.user.username}}</td>
+                                  <td>{{i.rep_date}}</td>
+                                  <td>{{i.status}}</td>
+                                  <td>{{i.buyer_message}}</td>
+                            
+                              </tr>
+                              {% endifequal %}
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                      </div>
+        
+    {% else %}
+    {% ifequal task "Dispatch_Rem" %}
+        <h4> Hi Team {{name}}, Please note following items have been dispatched on {{date}}. Please confirm receipt and advise approvals.</h4><hr>
+        <h5>Total Number of Dispatched Items = <span style="color:red">{{del}}</span></h5><hr>
+        
+        <div class="container-fluid" style="width:100%">
+         <table border="1" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Product</th>
+                                      <th>Supplier</th>
+                                      
+                                      <th>Awb No</th>
+                                     
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{i.sample.buyer.user.username}}</td>
+                                  <td>{{i.sample.season.name}}</td>
+                                  <td>{{i.sample.drop.name}}</td>
+                                  <td>{{i.sample.design_name}}</td>
+                                  <td>{{i.sample.color_name}}</td>
+                                  <td>{{i.sample.product.name}}</td>
+                                  <td>{{i.sample.supplier.user.username}}</td>
+                                  
+                                  <td>{{i.sample.awb_no}}</td>
+                                  
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                      </div>
+        
+        
+    {% else %}
+     {% ifequal task "Approval_Rem" %}
+      <h4> Hi Team {{name}}, Please note following items are pending for approvals. Please arrange to release the comments immediatey.</h4><hr>
+        <h5>Total Number Sampling Pending = <span style="color:red">{{del}}</span></h5><hr>
+        <div class="container-fluid" style="width:100%">
+                        
+                                <table border="1" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Date</th>
+                        
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Quality</th>
+                                      <th>Technique</th>
+                                      <th>Supplier</th>
+                                      <th>Courier Date</th>
+                                      <th>Courier Name</th>
+                                      <th>Current Status</th>
+                                      
+                                      
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{i.dos}}</td>
+                                   <td>{{i.buyer.user.username}}</td>
+                                  <td>{{i.season.name}}</td>
+                                  <td>{{i.drop.name}}</td>
+                                  <td>{{i.design_name}}</td>
+                                  <td>{{i.color_name}}</td>
+                                  <td>{{i.product.name}}</td>
+                                  <td>{{i.technique}}</td>
+                                  <td>{{i.supplier.user.username}}</td>
+                                  <td>{{i.sent_on}}</td>
+                                  <td>{{i.awb_no}}</td>
+                                
+                                 
+                                  <td>{{i.c_status}}</td>
+                               </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                      </div>
+        
+        
+     {% else %}
+     {% ifequal task "Set_Del" %}
+        <h4> Hi Team {{name}}, Please note following items are pending to update delivery date. Please set delivery date immediatey.</h4><hr>
+        <h5>Total Number of Pending Delivery Date = <span style="color:red">{{del}}</span></h5><hr>
+        <div class="container-fluid" style="width:100%">
+                        
+                                <table border="1" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>Date</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Supplier</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Quality</th>
+                                      <th>Technique</th>
+                                     
+                                      
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                                <tr>
+                                  <td>{{i.dos}}</td>
+                                  <td>{{i.buyer.user.username}}</td>
+                                  <td>{{i.season.name}}</td>
+                                  <td>{{i.drop.name}}</td>
+                                  <td>{{i.supplier}}</td>
+                                  <td>{{i.design_name}}</td>
+                                  <td>{{i.color_name}}</td>
+                                  <td>{{i.product.name}}</td>
+                                  <td>{{i.technique}}</td>
+                            
+                                  
+                                 </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+                  {% else %}
+                  {% ifequal task "Pending Greige" %}
+        <h4> Hi Team {{name}}, Please note following items are pending to update Greige Status. Please Update Griege Status immediatey.</h4><hr>
+        <h5>Total Number of Pending Griege Status = <span style="color:red">{{del}}</span></h5><hr>
+        <div class="container-fluid" style="width:100%">
+                        
+                                <table border="1" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>Date</th>
+                                      <th>Target date</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Supplier</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Quality</th>
+                                      <th>Technique</th>
+                                     
+                                      
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                                <tr>
+                                  <td>{{i.bulk.dos}}</td>
+                                  <td>{{i.bulk.gre_date}}</td>
+                                  <td>{{i.bulk.buy.user.username}}</td>
+                                  <td>{{i.bulk.season.name}}</td>
+                                  <td>{{i.bulk.drop.name}}</td>
+                                  <td>{{i.bulk.sup.user.username}}</td>
+                                  <td>{{i.bulk.sample.design_name}}</td>
+                                  <td>{{i.bulk.sample.color_name}}</td>
+                                  <td>{{i.bulk.sample.product.name}}</td>
+                                  <td>{{i.bulk.sample.technique}}</td>
+                            
+                                  
+                                 </tr>
+                                 
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+                  {% else %}
+                  {% ifequal task "Bulk Dispatched Detail" %}
+        <h4> Hi Team {{name}}, Please note following items has been Dispatched on {{date}}. Please Confirm Receipt. This is just for your kind reference.</h4><hr>
+        <h5>Total Number of Item Dispatched = <span style="color:red">{{del}}</span></h5><hr>
+        <div class="container-fluid" style="width:100%">
+                        
+                                <table border="1" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>Dispatch Date</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Supplier</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Quality</th>
+                                      <th>Technique</th>
+                                      <th>Dis Qty</th>
+                                      <th>L.R No</th>
+                                      <th>Transport Name</th>
+                                      <th>GMT vendor</th>
+                                      
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                                <tr>
+                                  <td>{{i.d_date}}</td>
+                                  <td>{{i.bulk.buy.user.username}}</td>
+                                  <td>{{i.bulk.season.name}}</td>
+                                  <td>{{i.bulk.drop.name}}</td>
+                                  <td>{{i.bulk.sup.user.username}}</td>
+                                  <td>{{i.bulk.sample.design_name}}</td>
+                                  <td>{{i.bulk.sample.color_name}}</td>
+                                  <td>{{i.bulk.sample.product.name}}</td>
+                                  <td>{{i.bulk.sample.technique}}</td>
+                                  <td>{{i.dis_qty}}</td>
+                                  <td>{{i.lr_no}}</td>
+                                  <td>{{i.tr_name}}</td>
+                                  <td>{{i.bulk.gmt_vendor}}</td>
+                            
+                                  
+                                 </tr>
+                                 
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+                  {% else %}
+                  
+                  
+                  {% ifequal task "Latest Dispatch" %}
+        <h4> Hi Team {{name}}, Please note following items has been dispatched. Please check and confirm.THis is just for your kind information.</h4><hr>
+        
+        <div class="container-fluid" style="width:100%">
+                        
+                                <table border="1" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>Date</th>
+                                      <th>Target date</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Supplier</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Quality</th>
+                                      <th>Technique</th>
+                                     
+                                      
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                              {% if i.dispatch_detail_set.all.0.c_date == date1 %}
+                                <tr>
+                                  <td>{{i.dos}}</td>
+                                  <td>{{i.gre_date}}</td>
+                                  <td>{{i.buy.user.username}}</td>
+                                  <td>{{i.season.name}}</td>
+                                  <td>{{i.drop.name}}</td>
+                                  <td>{{i.sup.user.username}}</td>
+                                  <td>{{i.sample.design_name}}</td>
+                                  <td>{{i.sample.color_name}}</td>
+                                  <td>{{i.sample.product.name}}</td>
+                                  <td>{{i.sample.technique}}</td>
+                            
+                                  
+                                 </tr>
+                                 {% endif %}
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+                  {% endifequal %}
+                  {% endifequal %}
+                  {% endifequal %}
+                  {% endifequal %}
+                  {% endifequal %}
+                  {% endifequal %}
+                  {% endifequal %}
+                  
+
+
+
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

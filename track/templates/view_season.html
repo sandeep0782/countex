@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container">
+    <div class="container-fluid">
+<h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">View Season</h1>
+                            </div><hr>
+
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>ID</th>
+                                      <th>Season Name</th>
+                                      <th>Description</th>
+                                      <th>Action</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in buy %}
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{i.id}}</td>
+                                  <td>{{i.name}}</td>
+                                  <td>{{i.desc}}</td>
+                                  <td style="width:150px">
+                                  {% if error != "pat4" %}<a href="{% url 'delete_season' i.id %}" ><button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button></a></td>
+                              {% else %} disabled{% endif %}</tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+                  </div>
+
+{% endblock %}

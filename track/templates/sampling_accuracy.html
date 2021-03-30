@@ -1,0 +1,118 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+{{approvaltime}}
+
+</style>
+<div class="container-fluid" style="width:100%">
+                            <div class="container-fluid">
+                                <div class="container-fluid">
+                                <h3 align="center" style="font-weight:bold; color : #E6120E ;margin-top:4%">
+                                    <div class="row">
+                                        <div class="col-md-6" align="right">
+                                            View Sampling Accuracy
+                                        </div>
+                                        <div class="col-md-6" align="left">
+                                            <div class="row">
+                                            <div class="col-md-6" align="left">
+                                            <form method="post" action="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-5">
+                        <select class="form-control" name="sea" style="width:100%">
+                            <option value="All">All</option>
+                            {% for i in season %}
+                            <option value="{{i.id}}">{{i.name}}</option>
+                            {% endfor %}
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <select class="form-control" name="buy" style="width:100%">
+                            <option value="All">All</option>
+                            {% for i in buyer %}
+                            <option value="{{i.id}}">{{i.user.username}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+                </span>
+            </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     </h3><br/>
+                                     <h4 align="center" style="color:red;font-weight:bold"><span style="color:black">(</span>Searched Info : "{{terror}}"<span style="color:black">)</span></h4>
+                                    </div><hr>
+                            
+
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Approval Status</th>
+                                      <th>No Of Options</th>
+                                      <th>Percentage</th>
+                                      
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              
+                                <tr>
+                                  <td>1.</td>
+                                  <td>{{tab1}}</td>
+                                  <td>{{le1}}</td>
+                                  <td>{{per1}}%</td>
+                                 
+                                 
+                              </tr>
+                               <tr>
+                                  <td>2.</td>
+                                  <td>{{tab2}}</td>
+                                  <td>{{le2}}</td>
+                                  <td>{{per2}}%</td>
+                                 
+                                 
+                              </tr>
+                            
+                              
+                               <tr>
+                                  <td>3.</td>
+                                  <td>{{tab3}}</td>
+                                  <td>{{le3}}</td>
+                                 <td>{{per3}}%</td>
+                                 
+                                 
+                              </tr>
+                              
+                                <tr>
+                                  <td>4.</td>
+                                  <td>{{tab4}}/Developent/Redevelopement</td>
+                                  <td>{{le4}}</td>
+                                 <td>{{per4}}%</td>
+                                 
+                                 
+                              </tr>
+                              
+                          </tbody>
+                      </table>
+                  </div>
+
+{% endblock %}

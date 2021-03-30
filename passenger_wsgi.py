@@ -1,0 +1,1 @@
+from Work_Tracking.wsgi import application

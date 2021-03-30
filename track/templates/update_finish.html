@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<style>
+    fieldset{
+    color:black;
+    }
+</style>
+
+<!---<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+$(function(){
+    var dtToday = new Date();
+
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;
+
+    $('#txtDate').attr('min', maxDate);
+});
+})
+</script>--->
+
+<div class="container" style="margin-top:5%;margin-bottom:5%">
+    <h4 align="center" style="color:red;background:yellow;padding:8px;margin:1%">{{perror}}</h4>
+    <div class="row">
+        <div  class="col-md-12">
+                <h2 style="background:#262626;padding:19px;color:white">UPDATE BULK FINISHED
+                </h2>
+<form id="loginForm" action="#" method="post" style="width:100%" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset id="body">
+        <div class="row">
+          
+            <div class="col-md-12">
+                <fieldset>
+                    <label for="email" style="color:black;">Print date</label>
+                    <input type="date" name="g_date" id="txtDate" style="height:33px">
+                </fieldset>
+          </div>
+        </div>
+    <input type="submit" id="login" value="Update Griege Issue" style="padding:12px">
+    </fieldset>
+    </form>
+    </div>
+
+</div>
+
+</div>
+
+{% if terror %}
+<script>
+    alert('Update Bulk Printed successfully');
+    window.location = "{% url 'sup_bulk_status' uid %}";
+</script>
+{% endif %}
+
+{% if perror %}
+<script>
+    alert('You can't take same or less date from Greige Issue Date.');
+</script>
+{% endif %}
+
+{% if gerror %}
+<script>
+    alert('First Update Bulk Print Date.');
+    window.location = "{% url 'sup_bulk_status' uid %}";
+</script>
+{% endif %}
+
+
+{% endblock %}

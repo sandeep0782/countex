@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container-fluid" style="width:90%">
+                            <div class="container-fluid">
+                                <h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">View Sampling <span style="color:black">(</span>Supplier : {{brand.user.username}}<span style="color:black">)</span></h1>
+                            </div><hr>
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Product</th>
+                                      <th>Supplier</th>
+                                      <th>Comment</th>
+                                      <th>Action</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{i.buyer.user.username}}</td>
+                                  <td>{{i.season.name}}</td>
+                                  <td>{{i.drop.name}}</td>
+                                  <td>{{i.design_name}}</td>
+                                  <td>{{i.color_name}}</td>
+                                  <td>{{i.product.name}}</td>
+                                  <td>{{i.supplier.user.username}}</td>
+                                  <td align="center" style="width:150px">
+                                  <a href="{% url 'view_comment_admin' i.id %}"><button class="btn btn-success"><i class="fa fa-comment"></i> </button></a></td>
+                                  <td style="width:150px">
+                                  <a href="{% url 'delete_sampling' i.id %}" ><button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button></a></td>
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+
+{% endblock %}

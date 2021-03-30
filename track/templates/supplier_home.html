@@ -1,0 +1,157 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+ <style>
+    a { color: white; } /* CSS link color */
+ </style>
+
+    <div class="container-fluid" style="margin-top:3%">
+        <h3 align="center" style="font-weight:bold;font-family:roman">SUPPLIER DASHBOARD</h3>
+    </div>
+<div class="container-fluid" style="width:95%;border:1px solid lightgrey;">
+    <div class="row container-fluid"  >
+        <h3 align="center" style="margin-top:1%;font-weight:bold;font-family:roman">Sampling Detail</h3>
+        <div class="col-md-12" style="border:1px solid lightgrey;padding:20px">
+            <form method="post" action="">
+                {% csrf_token %}
+            
+                <div class="row">
+                    <div align="right" class="col-md-5">
+                        <select class="form-control" name="sea1" style="width:100%">
+                            <option value="0" >All</option>
+                            {% for i in season %}
+                            <option value="{{i.id}}" {% ifequal sampling_summary.6 i.id %}selected{% endifequal %}>{{i.name}}</option>
+                            {% endfor %}
+                            
+                        </select>
+                    </div>
+                    <div align="right" class="col-md-5">
+                        <select class="form-control" name="buy1" style="width:100%">
+                            <option value="0">All</option>
+                            {% for i in buyer %}
+                            <option value="{{i.id}}" {% ifequal sampling_summary.7 i.id %}selected{% endifequal %}>{{i.user.username}}</option>
+                            {% endfor %}
+                            
+                        </select>
+                    </div>
+                    <div align="left" class="col-md-2">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+             <div class="container-fluid" style="margin-bottom:2%">
+                 <h3 align="center" style="color:red;font-family:roman;font-weight:bold">{{terror}}</h3>
+                 <a href="/all_sample_dash_admin?all_sample_sea={{sampling_summary.6}}&all_sample_buy={{sampling_summary.7}}">
+                     <div class="col-md-2" style="border:1px solid lightgrey;width:16%;background:;padding:12px;color:white;">
+						    <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+						        <h3 style="font-weight:bold;" align="center">{{sampling_summary.0}}</h3><br/>
+						        <h5 style="font-weight:bold;" align="center"> Total Development</h5>
+                    </div>
+                    </div>
+            </a>
+                    
+                 <a href="{% url 'approved_sample_dash_admin' sampling_summary.6 sampling_summary.7 %}">
+                     <div class="col-md-2" style="border:1px solid lightgrey;width:17%;background:;padding:12px;color:white">
+						       <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+						        <h3 style="font-weight:bold;" align="center">{{sampling_summary.1}}</h3><br/>
+						        <h5 style="font-weight:bold;" align="center">Approved Sample</h5>
+				    </div>
+				    </div>
+				    </a>
+				    
+                 <a href="{% url 'under_dev_sample_dash_admin' sampling_summary.6 sampling_summary.7 %}"><div class="col-md-2" style="border:1px solid lightgrey;width:17%;padding:12px;color:white;">
+                        <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+                        <h3 style="font-weight:bold;" align="center">{{sampling_summary.2}}</h3><br/>
+                        <h5 style="font-weight:bold;" align="center"> Under Developement</h5>
+				    </div>
+				    </div></a>
+
+                 <a href="{% url 'under_app_sample_dash_admin' sampling_summary.6 sampling_summary.7 %}">
+                     <div class="col-md-2" style="border:1px solid lightgrey;width:17%;background:;padding:12px;color:white">
+						       <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+						        <h3 style="font-weight:bold;" align="center">{{sampling_summary.3}}</h3><br/>
+						        <h5 style="font-weight:bold;" align="center"> Under Approval</h5>
+				    </div>
+				    </div>
+				</a>
+				
+				<a href="{% url 'under_redo_sample_dash_admin' sampling_summary.6 sampling_summary.7 %}">
+                     <div class="col-md-2" style="border:1px solid lightgrey;width:17%;background:;padding:12px;color:white">
+						       <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+						        <h3 style="font-weight:bold;" align="center">{{sampling_summary.4}}</h3><br/>
+						        <h5 style="font-weight:bold;" align="center"> Under Redevelopment</h5>
+				    </div>
+				    </div>
+				</a>
+				
+                 <a href="{% url 'drop_sample_dash_admin' sampling_summary.6 sampling_summary.7 %}"><div class="col-md-2" style="border:1px solid lightgrey;width:16%;background:;padding:12px;color:white">
+						       <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+						        <h3 style="font-weight:bold;" align="center">{{sampling_summary.5}}</h3><br/>
+						        <h5 style="font-weight:bold;" align="center">Drop</h5>
+				   
+
+             </div>
+             </div></a>
+             
+</div>
+
+      
+<div class="container-fluid" style="margin-top:2%;width:95%;border:1px solid lightgrey;">
+             
+             
+             <div class="row" style="margin-bottom:2%">
+                 <h3 align="center" style="margin-top:2%;font-weight:bold;font-family:roman">Bulk Order Detail</h3><hr>
+                    <a href="{% url 'total_qty_dash_admin' sampling_summary.6 sampling_summary.7 %}">
+                    <div class="col-md-2" style="border:1px solid lightgrey;width:16%;padding:12px;color:white;">
+                        <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+                            <h5 style="font-weight:bold;">Total Qty : {{bulk_summary.0}}</h5><br/>
+                            <h5 style="font-weight:bold;">Option : {{bulk_summary.1}}</h5>
+                        </div>
+				    </div></a>
+
+
+			        <a href="{% url 'dispatch_dash_admin' sampling_summary.6 sampling_summary.7 %}"><div class="col-md-2" style="border:1px solid lightgrey;width:17%;padding:12px;color:white;">
+						   <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+						        <h5 style="font-weight:bold;">Dispatched : {{bulk_summary.2}}</h5><br/>
+						        <h5 style="font-weight:bold;">Option : {{bulk_summary.3}}</h5>
+				    </div>
+				    </div></a>
+
+			        <a href="{% url 'packed_dash_admin' sampling_summary.6 sampling_summary.7 %}"><div class="col-md-2" style="border:1px solid lightgrey;width:17%;padding:12px;color:white;">
+                        <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+                        <h5 style="font-weight:bold;">Packed : {{bulk_summary.4}}</h5><br/>
+                        <h5 style="font-weight:bold;">Option : {{bulk_summary.5}}</h5>
+				    </div>
+				    </div></a>
+
+			        <a href="{% url 'under_prodn_dash_admin' sampling_summary.6 sampling_summary.7 %}"><div class="col-md-2" style="border:1px solid lightgrey;width:17%;background:;padding:12px;color:white">
+						       <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+                                <h5 style="font-weight:bold;">Under Prodn : {{bulk_summary.6}}</h5><br/>
+						        <h5 style="font-weight:bold;">Option : {{bulk_summary.7}}</h5>
+				    </div>
+				    </div></a>
+
+
+			        <a href="{% url 'Ontime_dash_admin' sampling_summary.6 sampling_summary.7 %}"><div class="col-md-2" style="border:1px solid lightgrey;width:17%;background:;padding:12px;color:white">
+						       <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+						        <h5 style="font-weight:bold;">OnTime : {{bulk_summary.8}}</h5><br/>
+						        <h5 style="font-weight:bold;">Option : {{bulk_summary.9}}</h5>
+				    </div>
+				    </div></a>
+				    
+			        <a href="{% url 'Delay_dash_admin' sampling_summary.6 sampling_summary.7 %}"><div class="col-md-2" style="border:1px solid lightgrey;width:16%;background:;padding:12px;color:white;">
+						    <div style="background:#00b7c2;border-radius: 10px;padding:6px">
+						        <h5 style="font-weight:bold;">Delayed : {{bulk_summary.10}}</h5><br/>
+						        <h5 style="font-weight:bold;">Option : {{bulk_summary.11}}</h5>
+                    </div>
+                    </div></a>
+
+
+             </div>
+</div></div>
+
+
+{% endblock %}

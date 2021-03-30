@@ -1,0 +1,103 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<style>
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+</style>
+
+<div class="container-fluid scrollmenu" style="width:80%">
+                            <div class="container-fluid">
+<h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">View Bulk Status</h1>
+                            </div><hr>
+                                <table id="example" class="display">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>First of Bulk</th>
+                                      <th>FPT Status</th>
+                                      <th>Fabric Checking Status</th>
+                                      <th>Dispatch Quantity</th>
+                                      <th>Payment Status</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>1.</td>
+                                  {% if not e.f_date is None %}
+                                  <td>
+                                      <ul>
+                                          <li>Date : {{e.f_date}}</li>
+                                          <li>AWB No. : {{e.awb_no}}</li>
+                                          <li>Courier Name : {{e.courier_name}}</li>
+                                      </ul>
+                                  </td>
+                                  {% else %}
+                                  <td>pending</td>
+                                  {% endif %}
+                                  {% if not f.f_date is None %}
+                                  <td>
+                                      <ul>
+                                          <li>Sent Date : {{f.f_date}}</li>
+                                          <li>AWB No. : {{f.awb_no}}</li>
+                                          <li>Courier Name : {{f.courier_name}}</li>
+                                          <li>TRF No. : {{f.trf}}</li>
+                                          <li>Report no. : {{f.rep_no}}</li>
+                                          <li>Status. : {{f.status}}</li>
+                                          <li>Report : <a href="{{f.report}}" download>{{f.report}}</a></li>
+                                      </ul>
+                                  </td>
+                                  {% else %}
+                                  <td>pending</td>
+                                  {% endif %}
+                                  {% if not g.f_date is None %}
+                                  <td>
+                                      <ul>
+                                          <li>Checked Date : {{g.f_date}}</li>
+                                          <li>QTY passed : {{g.qty_pass}}</li>
+                                          <li>QTY Rejected : {{g.qty_reject}}</li>
+                                          <li>Report : <a href="{{g.report}}" download>{{g.report}}</a></li>
+                                      </ul>
+                                  </td>
+                                  {% else %}
+                                  <td>pending</td>
+                                  {% endif %}
+                                  {% if not h.d_date is None %}
+                                  <td>
+                                      <ul>
+                                          <li>Bulk Dis. Date : {{h.d_date}}</li>
+                                          <li>QTY Dispatch : {{h.dis_qty}}</li>
+                                          <li>Transporter Name : {{h.tr_name}}</li>
+                                          <li>LR No. : {{h.lr_no}}</li>
+                                          <li>Report : <a href="{{h.report}}" download>{{h.report}}</a></li>
+                                      </ul>
+                                  </td>
+                                  {% else %}
+                                  <td>pending</td>
+                                  {% endif %}
+                                  {% if not i.p_date is None %}
+                                  <td>
+                                      <ul>
+                                          <li>Date : {{i.p_date}}</li>
+                                          <li>Payment Status : {{i.status}}</li>
+                                      </ul>
+                                  </td>
+                                  {% else %}
+                                  <td>pending</td>
+                                  {% endif %}
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+
+{% endblock %}

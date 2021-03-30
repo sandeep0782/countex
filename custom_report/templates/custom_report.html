@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+	<!-- //header -->
+	<!-- about -->
+	<div class="about">
+		<div class="aboutw3-agileinfo">
+			<!-- container -->
+			<div class="container">
+				<h3 class="box-title">Custom Report</h3><hr>
+
+<!-- Content Wrapper. Contains page content -->
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-header" style="display: block;">
+                        <div class="row">
+                            <div class="col-md-3 col-xs-4">
+                                <div class="form-group">
+                                    <select class="form-control report_filter">
+                                        <option value="0">all</option>
+                                        {% for report in report_choice %}
+                                        <option value="{{ report.1 }}" {% ifequal report.1 selected_choice %}
+                                            selected="selected" {% endifequal %}>{{ report.1 }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box">
+                    <div class="box-body no-padding">
+                        <table class="table">
+                            <tr>
+                                <th>Report Name</th>
+                                <th class="pull-right">#</th>
+                            </tr>
+
+                            {% for value in report %}
+                            <tr>
+                                <td class="text-capitalize"> <a href="{% url 'single_report' value.id %}"
+                                        style="color: inherit">{{ value.report_name }}</a></td>
+                            </tr>
+                            {% endfor %}
+
+
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+				
+			</div>
+
+		</div>
+		</div>
+		<script>
+		$(".report_filter").change(function(e) {
+            var report = $(this).val();
+            document.location="?report="+report;
+});
+		</script>
+		
+{% endblock %}

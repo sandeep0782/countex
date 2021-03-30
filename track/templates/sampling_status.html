@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+{% block body %}
+<style>
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+#messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 2%;
+}
+
+</style>
+
+<div class="container-fluid scrollmenu" style="width:100%;bottom-margin:5%">
+                            <div class="container-fluid">
+                                {% for message in messages %}
+					                <p id="messages">{{message}}</p>
+				                {% endfor %}		
+                            <h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">View Sampling</h1>
+                        
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>ID</th>
+                                      
+                                      <th>Date</th>
+                                     
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Design</th>
+                                      <th>Color</th>
+                                      <th>Quality</th>
+                                      <th>Technique</th>
+                                      <th>Supplier</th>
+                                      <th>Delivery Date</th>
+                                      <th>Complete date</th>
+                                      <th>Current Status</th>
+                                      <th>Time in Develop</th>
+                                      <th>Time in Approval</th>
+                                     
+                                      
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in data %}
+                                <tr>
+                                  <td>{{i.id}}</td>
+                                  
+                                  <td>{{i.dos}}</td>
+                                  
+                                  <td>{{i.buyer}}</td>
+                                  <td>{{i.season.name}}</td>
+                                  <td>{{i.drop.name}}</td>
+                                  <td>{{i.design_name}}</td>
+                                  <td>{{i.color_name}}</td>
+                                  <td>{{i.product.name}}</td>
+                                  <td>{{i.technique}}</td>
+                                  <td>{{i.supplier.user.username}}</td>
+                                  <td>{{i.del_date}}</td>
+                                  <td>{{i.doe}}</td>
+                                  <td>{{i.c_status}}</td>
+                                  <td>{{i.time_taken_developement}}</td>
+                                  <td>{{i.time_taken_approval}}</td>
+                                  
+                                  
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                      
+                  </div>
+                  </div>
+
+{% endblock %}

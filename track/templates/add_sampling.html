@@ -1,0 +1,109 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block body %}
+<style>
+    fieldset{
+    color:black;
+    }
+    #messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 2%;
+}
+</style>
+<div class="container" style="margin-top:5%;margin-bottom:5%">
+                                {% for message in messages %}
+					                <p id="messages">{{message}}</p>
+				                {% endfor %}
+    <div class="row">
+        <div  class="col-md-12">
+                <h2 style="background:#262626;padding:19px;color:white">ADD SAMPLING DETAIL</h2>
+<form id="loginForm" action="#" method="post" style="width:100%" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset id="body">
+        <div class="row">
+            <div class="col-md-6">
+                
+                    <label for="email" style="color:black;">Design Name</label>
+                    <input type="text" name="design_name" placeholder="Enter Design Name" id="email" >
+                
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="email" style="color:black;">Buyer</label>
+              {% render_field form.buyer class="form-control" placeholder="Buyer" %}
+            </div>
+            </div>
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Color Name</label>
+                    <input type="text" name="color_name" placeholder="Color Name" id="email" >
+            </div>
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="email" style="color:black;">Season</label>
+              {% render_field form.season class="form-control" placeholder="Season" %}
+            </div>
+          </div>
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="email" style="color:black;">Supplier</label>
+              {% render_field form.supplier class="form-control" placeholder="Supplier" %}
+            </div>
+          </div>
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="email" style="color:black;">Drop</label>
+              {% render_field form.drop class="form-control" placeholder="Drop" %}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label for="email" style="color:black;">Product</label>
+              {% render_field form.product class="form-control" placeholder="Product" %}
+            </div>
+          </div>
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Upload Image</label>
+                    <input type="file" name="image" value="Choose Image" id="email" style="height:35px">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+                <label for="email" style="color:black;">Technique</label>
+              {% render_field form.technique class="form-control" placeholder="Technique" %}
+            </div>
+          </div>
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Start Date</label>
+                    <input type="date" name="dos" value="" id="email" style="height:35px">
+          </div>
+
+        </div>
+
+        <hr>
+        <h4>Add sampling through Excel File</h4><hr/>
+        <div class="col-md-6">
+                    <label for="email" style="color:black;">Upload Excel File</label>
+                    <input type="file" name="file1" value="Choose File" id="email" style="height:35px">
+          </div>
+
+    <input type="submit" id="login" value="Add Sampling" style="padding:12px">
+    </fieldset>
+    </form>
+    </div>
+
+</div>
+
+</div>
+
+{% if terror %}
+<script>
+    alert('Add a new Sample successfully');
+    window.location = "{% url 'view_sampling' %}";
+</script>
+{% endif %}
+
+{% endblock %}

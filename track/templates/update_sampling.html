@@ -1,0 +1,134 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block body %}
+<style>
+    fieldset{
+    color:black;
+    }
+</style>
+<div class="container" style="margin-top:5%;margin-bottom:5%">
+    <div class="row">
+        <div  class="col-md-12">
+                <h2 style="background:#262626;padding:19px;color:white">Update SAMPLING DETAIL</h2>
+<form id="loginForm" action="#" method="post" style="width:100%" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset id="body">
+        <div class="row">
+            <div class="col-md-6">
+                
+                    <label for="email" style="color:black;">Design Name</label>
+                    <input type="text" name="design" placeholder="" id="email" value="{{sam.design_name}}" readonly>
+                
+            </div>
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Color Name</label>
+                    <input type="text" name="color" placeholder="" id="email" value="{{sam.color_name}}" readonly>
+            <div class="col-md-6">
+                
+                    <label for="email" style="color:black;">Technique</label>
+                    <input type="text" name="tech" placeholder="" id="email" value="{{sam.technique}}" readonly>
+                
+            </div>
+            
+            </div>
+            
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Time Status</label>
+                    <input type="text" name="time" placeholder="Color Name" id="email" value="{{sam.time_status}}" readonly>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="email" style="color:black;">Current Status</label>
+                    <select id="email" class="form-control" name="current">
+                        <option value="Complete">Complete</option>
+                        <option value="Drop">Drop</option>
+                        <option value="">No Value</option>
+                    </select>
+            </div>
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Current Table</label>
+                    <select id="email" name="c_status" class="form-control">
+                        <option value="Approved">Approved</option>
+                        <option value="Approved with Comment">Approved with Comment</option>
+                        <option value="Under 2nd Submit">Under 2nd Submit</option>
+    
+                        
+                    </select>
+            </div>
+            
+            
+            <div class="col-md-6">
+                    <label for="email" style="color:black;">Count</label>
+                    <input type="text" name="count" placeholder="Color Name" id="email" value="{{sam.count}}" >
+            </div>
+            <div class="col-md-6">
+                <label for="email" style="color:black;">Complete Date</label>
+                <input type="date" name="doe" placeholder="Color Name" id="email" value="{{sam.doe}}" >
+    
+          </div>
+            
+        </div>
+
+        <hr>
+    
+
+    <input type="submit" id="login" value="Add Sampling" style="padding:12px">
+    </fieldset>
+    </form>
+    </div>
+    
+    <div class="container">
+                            <div class="container-fluid">
+                            <h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">Sampling Comment</h1>
+                            </div><hr>
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Courier Name</th>
+                                      <th>AWB No.</th>
+                                      <th>Sent On</th>
+                                      <th>Reply Date</th>
+                                      <th>Status by Buyer</th>
+                                      <th>Buyer Message</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in buy %}
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{i.courier_name}}</td>
+                                  <td>{{i.awb_no}}</td>
+                                  <td>{{i.sent_on}}</td>
+                                  <td>{{i.rep_date}}</td>
+                                  {% if not i.status is None %}
+                                  <td>{{i.status}}</td>
+                                    {% else %}
+                                  <td></td>
+                                    {% endif %}
+                                    {% if not i.buyer_message is None %}
+                                  <td>{{i.buyer_message}}</td>
+                                    {% else %}
+                                  <td></td>
+                                    {% endif %}
+
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+
+</div>
+
+</div>
+
+{% if terror %}
+<script>
+    alert('Add a new Sample successfully');
+    window.location = "{% url 'view_sampling' %}";
+</script>
+{% endif %}
+
+{% endblock %}

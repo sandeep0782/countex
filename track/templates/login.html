@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+{% ifequal error "admin" %}
+<script>
+    alert('logged in successfully');
+    window.location=('{% url 'admin_home' %}');
+</script>
+{% endifequal %}
+{% ifequal error "pat1" %}
+<script>
+    alert('logged in successfully');
+    window.location=('{% url 'user_home' %}');
+</script>
+{% endifequal %}
+
+{% ifequal error "notmember" %}
+<script>
+    alert('Your information verification is pending.plz login after sometimes');
+    window.location=('{% url 'logout' %}');
+</script>
+{% endifequal %}
+{% ifequal error "pat2" %}
+<script>
+    alert('logged in successfully');
+    window.location=('{% url 'supplier_home' %}');
+</script>
+{% endifequal %}
+{% ifequal error "pat3" %}
+<script>
+    alert('logged in successfully');
+    window.location=('{% url 'gmt_home' %}');
+</script>
+{% endifequal %}
+{% ifequal error "not" %}
+<script>
+    alert('Username & Password are not Matching');
+</script>
+{% endifequal %}
+
+
+
+<div class="container" style="margin-top:5%;margin-bottom:5%">
+    <div class="row">
+        <div  class="col-md-7">
+                <h2 style="background:#262626;padding:19px;color:white">LOGIN FORM</h2>
+            <form id="loginForm" action="#" method="post" style="width:100%">
+                {% csrf_token %}
+    <fieldset id="body">
+        <fieldset>
+            <label for="email">Username</label>
+            <input type="text" name="name" placeholder="Enter Username" id="email" required="">
+        </fieldset>
+        <fieldset>
+            <label for="password">Password</label>
+            <input type="password" placeholder="Enter Password" name="pwd" id="password" required="">
+        </fieldset>
+        <input type="submit" id="login" value="Sign in">
+        <label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
+    </fieldset>
+    <span><a href="{% url 'signup' %}" style="color:Blue;font-weight:bold"><<<<>>>> New user register here</a></span>
+</form>
+</div>
+        <div class="col-md-5">
+            <img src="{% static 'images/sign.jpg' %}" style="width:100%;height:360px">
+        </div>
+    </div>
+
+</div>
+{% endblock %}

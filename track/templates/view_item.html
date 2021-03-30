@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container-fluid" style="width:100%">
+                    <div class="container-fluid">
+                        <h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">View Product</h1>
+                         </div><hr>
+                                <table id="example" class="display" style="width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th>S.N</th>
+                                      <th>Product Name</th>
+                                      <th>Count</th>
+                                      <th>Construction</th>
+                                      <th>GSM</th>
+                                      <th>Weave</th>
+                                      <th>Width</th>
+                                      <th>Solid Price</th>
+                                      <th>Printed Price</th>
+                                      <th>Digital Price</th>
+                                      <th>MOQ</th>
+                                      <th>Lead Time</th>
+                                      <th>Remarks</th>
+                                      <th>Action</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in buy %}
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{i.name}}</td>
+                                  <td>{{i.count}}</td>
+                                  <td>{{i.construction}}</td>
+                                  <td>{{i.gsm}}</td>
+                                  <td>{{i.weave}}</td>
+                                  <td>{{i.width}}</td>
+                                  <td>{{i.solid_rate}}</td>
+                                  <td>{{i.printed_rate}}</td>
+                                  <td>{{i.digital_rate}}</td>
+                                  <td>{{i.moq}}</td>
+                                  <td>{{i.leadtime}}</td>
+                                  <td>{{i.desc}}</td>
+                                  <td align="center" style="width:100px">
+                                  <a href="{% url 'update_product' i.id %}"><button class="btn btn-success"><i class="fa fa-edit"></i></button></a></td>
+                                  <td style="width:5px">
+                                  {% if error != "pat4" %}<a href="{% url 'delete_item' i.id %}" ><button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button></a></td>
+                              
+                              {% endif %}</tr>
+                              
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+{% endblock %}

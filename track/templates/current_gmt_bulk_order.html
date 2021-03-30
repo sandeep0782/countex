@@ -1,0 +1,127 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+</style>
+<h1 align="center" style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:4%">View Bulk Order</h1>
+<hr>
+<div class="container-fluid scrollmenu" style="width:100%">
+                            <div class="container-fluid">
+                            </div>
+                                <table id="example" class="display">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Image</th>
+                                      <th>Buyer</th>
+                                      <th>Season</th>
+                                      <th>Drop</th>
+                                      <th>Design_Name</th>
+                                      <th>Color</th>
+                                      <th>Quality</th>
+                                      <th>Width</th>
+                                      <th>Supplier</th>
+                                      <th>Style</th>
+                                      <th>Print_Tech</th>
+                                      
+                                      <th>Quantity</th>
+                                      <th>Rate</th>
+                                      <th>Value</th>
+                                      <th>Delivery</th>
+                                      <th>Current Status</th>
+                                      <th>Action</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in prod %}
+                              <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{%if i.sample.image %}
+                                  <img src="{{i.sample.image.url}}" style="width:80px;height:80px">
+                                  {% else %}
+                                  {% endif %}</td>
+                                  <td>{{i.sample.buyer.user.username}}</td>
+                                  <td>{{i.sample.season.name}}</td>
+                                  <td>{{i.sample.drop.name}}</td>
+                                  <td>{{i.sample.design_name}}</td>
+                                  <td>{{i.sample.color_name}}</td>
+                                  <td>{{i.sample.product.name}}</td>
+                                  
+                                  {% if not i.width is None %}
+                                  <td>{{i.width}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+                                  
+                                  
+                                  <td>{{i.sample.supplier.user.username}}</td>
+                                  
+                                  
+                                  {% if not i.style is None %}
+                                  <td>{{i.style}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.print_tech is None %}
+                                  <td>{{i.print_tech}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.qunt is None %}
+                                  <td>{{i.qunt}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.rate is None %}
+                                  <td>{{i.rate}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.value is None %}
+                                  <td>{{i.value}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.del_date is None %}
+                                  <td>{{i.dupl_del_date}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  {% if not i.c_status is None %}
+                                  <td>{{i.c_status}}</td>
+                                  {% else %}
+                                  <td></td>
+                                  {% endif %}
+
+                                  <td align="center" style="width:100px">
+                                  <a href="{% url 'sup_bulk_status' i.id %}">
+                                      <button class="btn btn-success">
+                                          <i class="fa fa-edit"></i>View Update</button></a>
+                                  </td>
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+
+{% endblock %}
