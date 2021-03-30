@@ -2,6 +2,8 @@ defusedxml==0.6.0
 diff-match-patch==20200713
 django-import-export==2.3.0
 djangorestframework==3.11.0
+django-widget-tweaks
+django-crontab
 et-xmlfile==1.0.1
 jdcal==1.4.1
 MarkupPy==1.14
@@ -13,6 +15,7 @@ Pillow==7.2.0
 python-dateutil==2.8.1
 pytz==2020.1
 PyYAML==5.3.1
+pymysql
 six==1.15.0
 tablib==2.0.0
 xlrd==1.2.0
